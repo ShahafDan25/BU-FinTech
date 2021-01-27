@@ -59,7 +59,7 @@
                     $sql = "INSERT INTO Records (TimeStamp, CurrentValue, ValueChange, Stocks_ID) VALUES (NOW(), ".$newValue.", ".$difference.", ".($i + 1).");";
                     $c -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $c -> exec($sql);
-                } catch(PDOException $e) {echo $e;}
+                } catch(PDOException $e) {echo $e; /* WILL BE MOST LIKELY SERVER DISCONNECTION */ $c = connDB();}
                 echo "--- ".strval($i+1)."\t\t".strval($newValue)."\t\t".strval($difference)."\t\t".date('h:i:s')."\n";
                 $valueTracker[$i] = $newValue;
             }
